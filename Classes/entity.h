@@ -2,23 +2,24 @@ using namespace std;
 #include <tuple>
 class Entity {
   private:
-    tuple<float, float> pos;
+    Vector2 pos;
 
   public:
 
     virtual ~Entity() {
     }
 
-    Entity(tuple<float, float> pos) {
-      pos = pos;
+    Entity(Vector2 posi) {
+      pos = posi;
     }
-    void SetPos(tuple<float, float> pos) {
-      pos = pos;
+    void SetPos(Vector2 posi) {
+      pos = posi;
     }
-    void Move(tuple<float, float> dif) {
-      pos = make_tuple(get<0>(pos) + get<0>(dif), get<1>(pos) + get<0>(dif));
+    void Move(Vector2 dif) {
+      pos.x = pos.x + dif.x;
+      pos.y = pos.y + dif.y;
     }
-    tuple<float, float> GetPos() {
+    Vector2 GetPos() {
       return pos;
     }
     virtual void Draw() = 0;

@@ -1,6 +1,7 @@
 #include <iostream>
 #include <raylib.h>
 #include "Classes/entity.h"
+#include "Classes/food.h"
 #include "Classes/person.h"
 #include <tuple>
 #include <vector>
@@ -16,12 +17,15 @@ int main () {
   SetTargetFPS(60);
   vector<Entity*> drawables;
   vector<Person*> people;
-  Person* dopa = new Person(drawables, people, make_tuple(2, 3), 4);
-  Person* dopa2 = new Person(drawables, people, make_tuple(2, 3), 4);
+  vector<Food*> foods;
+
+  Person* p1 = new Person(drawables, people, Vector2{2, 3}, 0);
+  Person* p2 = new Person(drawables, people, Vector2{40, 80}, 0);
+  Food* f1 = new Food(drawables, foods, Vector2{400, 400});
+
 
   cout << drawables.size();
   
-  delete dopa;
   cout << drawables.size();
 
   //dopa.SetPos(make_tuple(2, 1));
@@ -35,15 +39,15 @@ int main () {
   SetTargetFPS(60);
 
   while (WindowShouldClose() == false) {
-    cout << drawables.size() << 3;
     BeginDrawing();
     ClearBackground(WHITE);
     for (auto &e : drawables) {
       e->Draw();
     }
     for (auto &e : people) {
+      e->Seek(foods);
       //cout << e->GetFood();
-      e->Move(make_tuple(0.2, 0.2));
+      //e->Move(make_tuple(0.2, 0.2));
     }
 
     // ball_x += ball_speed_x;

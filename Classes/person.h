@@ -11,11 +11,10 @@ class Person : public Entity {
     float dir = 0;
     vector<Entity*>& drawables;
     vector<Person*>& people;
+    //vector<Food*>& foods;
 
   public:
-    Person(vector<Entity*>& drawables, vector<Person*>& people, tuple<float, float> pos, int food) : Entity(pos), drawables(drawables), people(people) {
-      //drawables = drawables;
-      food = food;
+    Person(vector<Entity*>& drawables, vector<Person*>& people,Vector2 pos, int food) : Entity(pos), drawables(drawables), people(people) {
       drawables.emplace_back(this);
       people.emplace_back(this);
     }
@@ -34,7 +33,13 @@ class Person : public Entity {
     }
 
     void Draw() {
-      DrawCircle(get<0>(GetPos()), get<1>(GetPos()), 30.0, RED);
+      DrawCircle(GetPos().x, GetPos().y, 30.0, RED);
+    }
+    
+    void Seek(vector<Food*>& foods) {
+       for (auto i : foods) {
+        
+       }
     }
 
     int GetFood() {
